@@ -13,7 +13,8 @@ public class ToDoList {
             System.out.println("1: To add tasks");
             System.out.println("2: To remove tasks");
             System.out.println("3: To watch tasks");
-            System.out.println("4: To close ToDoList");
+            System.out.println("4: To edit ToDoList");
+            System.out.println("5: To close ToDoList");
             Scanner sc = new Scanner(System.in);
             int num = sc.nextInt();
             sc.nextLine();
@@ -27,22 +28,29 @@ public class ToDoList {
             //for deleting the task
             else if (num == 2) {
                 System.out.println("Select the Task you want to delete");
-                for (int j = 0; j < content.size(); j++) {
-                    System.out.println((j + 1) + ":" + content.get(j));
-                }
+                DisplayList.display(content);
                 int del = sc.nextInt();
                 RemoveTask.deleting(del, content);
             }
             //for viewing the tasks
             else if (num == 3) {
                 System.out.println("Here are your task which has been previously added..");
-                for (int j = 0; j < content.size(); j++) {
-                    System.out.println((j + 1) + ":" + content.get(j));
-                }
-            } else if (num == 4) {
+                DisplayList.display(content);
+            }
+            else if  (num==4){
+                System.out.println("Choose the task you want to edit");
+                DisplayList.display(content);
+                int replaceNo = sc.nextInt();
+                System.out.println("Enter the task at you want to be edited");
+                sc.nextLine();
+                String newString = sc.nextLine();
+                ReplacingTask.replaceTask(replaceNo,newString,content);
+            }
+            else if (num == 5) {
                 System.out.println("ToDoList is successfully closed");
                 break;
-            } else {
+            }
+            else {
                 System.out.println("Invalid input");
             }
         }
