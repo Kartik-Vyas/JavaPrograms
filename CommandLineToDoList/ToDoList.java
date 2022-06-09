@@ -14,7 +14,8 @@ public class ToDoList {
             System.out.println("2: To remove tasks");
             System.out.println("3: To watch tasks");
             System.out.println("4: To edit ToDoList");
-            System.out.println("5: To close ToDoList");
+            System.out.println("5: Set the task to Priority");
+            System.out.println("6: To close ToDoList");
             Scanner sc = new Scanner(System.in);
             int num = sc.nextInt();
             sc.nextLine();
@@ -36,6 +37,15 @@ public class ToDoList {
             else if (num == 3) {
                 System.out.println("Here are your task which has been previously added..");
                 DisplayList.display(content);
+                int value = PriorityTask.ImportantTask.size();
+                if(value==0)
+                {
+                    System.out.println("No priority given to any tasks");
+                }
+                else {
+                    System.out.println("Your priority task is : ");
+                    System.out.println(PriorityTask.ImportantTask);
+                }
             }
             else if  (num==4){
                 System.out.println("Choose the task you want to edit");
@@ -46,7 +56,13 @@ public class ToDoList {
                 String newString = sc.nextLine();
                 ReplacingTask.replaceTask(replaceNo,newString,content);
             }
-            else if (num == 5) {
+            else if(num == 5){
+                System.out.println("Choose the task which needed to be given first priority");
+                DisplayList.display(content);
+                int priority = sc.nextInt();
+                PriorityTask.urgentTask(priority,content);
+            }
+            else if (num == 6) {
                 System.out.println("ToDoList is successfully closed");
                 break;
             }
